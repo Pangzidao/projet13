@@ -1,7 +1,20 @@
 import logo from '../assets/argentBankLogo.png'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
+function LogIndicator() {
+  const userIsLogged = useSelector((state) => state.login)
+
+  console.log(userIsLogged)
+
+  return(
+    <p>{userIsLogged? "Sign Out" : "Sign In" }</p>
+  )
+ 
+}
 
 function Header() {
+  
     return (
         <header>
       <nav className="main-nav">
@@ -14,9 +27,10 @@ function Header() {
           <h1 className="sr-only">Argent Bank</h1>
         </Link>
         <div>
+          
         <Link className="main-nav-link" to="/login">
           <i className="fa fa-user-circle"></i>
-           Sign In         
+          <LogIndicator />        
         </Link>
         </div>
       </nav>

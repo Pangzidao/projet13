@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { login } from '../store'
 
 
 function Login(){
+
+    const dispatch = useDispatch()
+
     return(
         <main className="main bg-dark">
       <section className="sign-in-content">
@@ -21,9 +26,16 @@ function Login(){
               >Remember me</label
             >
           </div>
-          <button className="sign-in-button">Sign In</button>
+          <button className="sign-in-button"
+                  onClick={() => {
+                    dispatch(login())
+                    }
+                  
+                  }
+          
+          >Sign In</button>
           <Link className="main-nav-link" to="/profile">
-           Sign In         
+           go to profile         
         </Link>
         </div>
       </section>

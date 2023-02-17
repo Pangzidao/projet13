@@ -1,9 +1,24 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { createStore } from '@reduxjs/toolkit'
 
-const store = configureStore({
-    reducer: {
-      
+// state
+const initialState = {
+  login: false
+}
+
+// actions creators
+
+export const login = () => ({ type: "login"})
+
+function reducer(state = initialState, action) {
+  if (action.type === 'login') {
+    return {
+      ...state, 
+      login: !state.login
     }
-  })
-  
-  export default store
+  }
+  return state
+}
+
+export const store = createStore(reducer)
+
+
