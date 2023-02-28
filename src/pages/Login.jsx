@@ -1,43 +1,52 @@
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { login } from '../store'
+import { Navigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { login, store } from '../store'
+import { getLogin } from '../data';
+import { useState , useEffect} from 'react';
 
+let identitifiants =  {
+  "email": 'tony@stark.com',
+  "password": 'password123'
+}
 
 function Login(){
+    const state = store.getState()
+    console.log(state)
 
-    const dispatch = useDispatch()
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loginStatus, setLoginStatus] = useState(0);
+
+    function handleSubmit(e){
+      e.preventDefault()
+      getLogin({"email": email, "password": password}).then((promise) => {
+        setLoginStatus(promise.status)
+      })
+    }
+    
+    if (loginStatus === 200){
+      store.dispatch({type: 'login'})
+    }
 
     return(
         <main className="main bg-dark">
-      <section className="sign-in-content">
-        <i className="fa fa-user-circle sign-in-icon"></i>
-        <h1>Sign In</h1>
-        <div>
-          <div className="input-wrapper">
-            <label htmlFor="username">Username</label
-            ><input type="text" id="username" />
-          </div>
-          <div className="input-wrapper">
-            <label htmlFor="password">Password</label
-            ><input type="password" id="password" />
-          </div>
-          <div className="input-remember">
-            <input type="checkbox" id="remember-me" /><label htmlFor="remember-me"
-              >Remember me</label
-            >
-          </div>
-          <button className="sign-in-button"
-                  onClick={() => {
-                    dispatch(login())
-                    }
-                  
-                  }
-          
-          >Sign In</button>
-          <Link className="main-nav-link" to="/profile">
-           go to profile         
-        </Link>
-        </div>
+          <section className="sign-in-content">
+          <i className="fa fa-user-circle sign-in-icon"></i>
+          <h1>Sign In</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="input-wrapper">
+              <label htmlFor="username">Username</label>
+              <input type="text" id="username" onChange={e => setEmail(e.target.value)}/>
+            </div>
+            <div className="input-wrapper">
+              <label htmlFor="password">Password</label>
+              <input type="password" id="password" onChange={e => setPassword(e.target.value)}/>
+            </div>
+            <div className="input-remember">
+              <input type="checkbox" id="remember-me" /><label htmlFor="remember-me">Remember me</label>
+            </div>
+            <button className="sign-in-button">Sign In</button>
+          </form>
       </section>
     </main>
     )

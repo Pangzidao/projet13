@@ -1,10 +1,10 @@
 import logo from '../assets/argentBankLogo.png'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { store } from '../store'
 
 function LogIndicator() {
   const userIsLogged = useSelector((state) => state.login)
-
   console.log(userIsLogged)
 
   return(
