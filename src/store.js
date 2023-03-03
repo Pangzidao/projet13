@@ -11,7 +11,7 @@ export const login = () => ({ type: "login"})
 
 
 
-function reducer(state, action) {
+function reducer(state = initialState, action) {
   if (action.type === 'login') {
     return {
       ...state, 

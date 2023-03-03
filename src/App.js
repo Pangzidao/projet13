@@ -5,8 +5,11 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import './index.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { store } from './store';
 
 function App() {
+
+  console.log(store.dispatch)
 
     return(
         <Router>

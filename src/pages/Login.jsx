@@ -10,8 +10,10 @@ let identitifiants =  {
 }
 
 function Login(){
-    const state = store.getState()
-    console.log(state)
+    
+    const logged = useSelector((state) => state.login)
+
+    console.log(logged)
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

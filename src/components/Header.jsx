@@ -5,7 +5,7 @@ import { store } from '../store'
 
 function LogIndicator() {
   const userIsLogged = useSelector((state) => state.login)
-  console.log(userIsLogged)
+  console.log(store)
 
   return(
     <p>{userIsLogged? "Sign Out" : "Sign In" }</p>
