@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logIn } from "../store";
 import { useState, useEffect } from "react";
 import { getLogin } from "../data";
