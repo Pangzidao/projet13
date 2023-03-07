@@ -1,26 +1,20 @@
-import { createStore } from '@reduxjs/toolkit'
+import { createStore } from 'redux';
 
-// state
 const initialState = {
-  logged: false
+    logged: false
 }
 
-// actions creators
+export const logIn = () => ({type:"login"})
 
-export const login = () => ({ type: "login"})
-
-
-
-function reducer(state = initialState, action) {
-  if (action.type === 'login') {
-    return {
-      ...state, 
-      logged: !state.login
+function reducer(state = initialState, action){
+    switch(action.type){
+        case "login":
+            return {...state, logged: true}
+        default:
+            return state
     }
-  }
-  return state
 }
 
-export const store = createStore(reducer, initialState)
+const store = createStore(reducer, initialState)
 
-
+export default store

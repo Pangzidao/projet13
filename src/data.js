@@ -1,22 +1,42 @@
-const URL_API = "http://localhost:3001/api/v1/user/login"
-
-
 async function getLogin(identifiants){
+    let response = await fetch("http://localhost:3001/api/v1/user/login", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(identifiants)
+    })
+    let login = await response.json()
 
-  const response = await fetch(URL_API, {
-    method: 'POST',
-    body: JSON.stringify(identifiants),
-    headers: {"Content-Type": "application/json"}
-   })
-   
-   const login = await response.json()
-   
-   return login
-
+    return login
 }
 
-export { getLogin }
-  
+async function getProfile(token){
+   
+    let loginFetchResponse = await fetch("http://localhost:3001/api/v1/user/profile", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer" + token
+        }
+        
+    })
+    let login = await loginFetchResponse.json()
+    return login
+}
+
+async function editProfile(token, data){
+    let loginFetchResponse = await fetch("http://localhost:3001/api/v1/user/profile", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer" + token
+        },
+        body: JSON.stringify(data)
+    })
+    let login = await loginFetchResponse.json()
+    return login
+}
+
+export { getLogin, getProfile, editProfile }
  
 
 

@@ -5,12 +5,18 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import './index.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { store } from './store';
+import {getLogin, getProfile, editProfile} from './data';
 
 function App() {
 
-  console.log(store.dispatch)
-
+    let token = ""
+    getLogin({"email": "tony@stark.com", "password": "password123"}).then(data => {
+      console.log(data.body.token)
+      token = data.body.token
+      getProfile(token).then(data => console.log(data))
+      editProfile(token, {"firstName":"Tony","lastName":"Stark"}).then(data => console.log(data))
+    })
+    
     return(
         <Router>
           <Header />
