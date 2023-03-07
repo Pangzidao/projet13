@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { logIn } from "../store";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getLogin } from "../data";
+import { Navigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -10,21 +11,22 @@ function Login() {
 
   const dispatch = useDispatch();
 
-  const loginState = useSelector((state) => state.logged);
+  useEffect(() => {
+    if (loginStatus === 200) {
+      dispatch(logIn());
+    }
+  }, [loginStatus, dispatch]);
 
   function handleSubmit(e) {
     e.preventDefault();
     console.log(email, password);
     getLogin({ email: email, password: password }).then((res) => {
       setLoginStatus(res.status)
-        if (loginStatus === 200) {
-          dispatch(logIn());
-          console.log(loginState)
-        }
       }
-    );
+    )
   }
 
+  if (loginStatus === 200) return <Navigate to="/profile" />
 
 
   return (
