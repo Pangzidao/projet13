@@ -23,7 +23,7 @@ async function getProfile(token){
     return login
 }
 
-async function editProfile(token, data){
+async function setProfile(token, data){
     let loginFetchResponse = await fetch("http://localhost:3001/api/v1/user/profile", {
         method: "PUT",
         headers: {
@@ -36,7 +36,7 @@ async function editProfile(token, data){
     return login
 }
 
-export { getLogin, getProfile, editProfile }
+export { getLogin, getProfile, setProfile }
  
 
 

@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import './index.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import {getLogin, getProfile, editProfile} from './data';
+import {getLogin, getProfile, setProfile} from './data';
 
 function App() {
 
@@ -14,7 +14,7 @@ function App() {
       console.log(data.body.token)
       token = data.body.token
       getProfile(token).then(data => console.log(data))
-      editProfile(token, {"firstName":"Tony","lastName":"Stark"}).then(data => console.log(data))
+      setProfile(token, {"firstName":"Tony","lastName":"Stark"}).then(data => console.log(data))
     })
     
     return(

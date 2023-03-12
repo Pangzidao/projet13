@@ -1,7 +1,10 @@
 import { createStore } from 'redux';
 
 const initialState = {
-    logged: false
+    logged: false,
+    token: "",
+    firstName: "",
+    lastName: ""
 }
 
 export const logIn = () => ({type:"login"})
