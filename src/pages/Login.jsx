@@ -8,12 +8,13 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState(0);
+  const [token, setToken] = useState("");
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (loginStatus === 200) {
-      dispatch(logIn());
+      dispatch({type: "login", token: token});
     }
   }, [loginStatus, dispatch]);
 
@@ -21,7 +22,9 @@ function Login() {
     e.preventDefault();
     console.log(email, password);
     getLogin({ email: email, password: password }).then((res) => {
+      console.log(res)
       setLoginStatus(res.status)
+      setToken(res.body.token)
       }
     )
   }

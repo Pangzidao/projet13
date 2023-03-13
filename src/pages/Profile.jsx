@@ -1,26 +1,33 @@
+import { useSelector } from "react-redux"
+import { getProfile } from "../data"
+import { useState } from "react"
+import EditName from "../components/EditName"
+import { useDispatch } from "react-redux";
+
+
 function Profile(){
 
-  
+  const dispatch = useDispatch()
+
+  const [editingName, setEditingName] = useState(true)
+
+  const token = useSelector(state => state.token)
+  const firstName = useSelector(state => state.firstName)
+  const lastName = useSelector(state => state.lastName)
+
+  getProfile(token).then(data => {
+    console.log(data)
+    dispatch({type: "setFirstName", firstName: data.body.firstName})
+    dispatch({type: "setLastName", lastName: data.body.lastName})
+    }
+  )
 
   return(
         <main className="main bg-dark">
       <div className="header">
-        <h1>Welcome back<br /> Jarvis!</h1>
-        <button className="edit-button">Edit Name</button>
-        <div id="edit-section">
-          <form name="edit">
-            <div className="profil-input-wrapper">
-              <input type="text" placeholder="firstName" required />
-                </div>
-            <div className="profil-input-wrapper">
-                <input type="text" placeholder="lastName" required />
-            </div>
-          </form>
-              <div className="btn-form">
-                <button type="submit" className="save-button">Save</button>
-                <button type="button" className="cancel-button">Cancel</button>
-              </div>
-            </div>
+        <h1>Welcome back<br />{firstName} {lastName}</h1>
+        <button className="edit-button" onClick={() => setEditingName(!editingName)}>Edit Name</button>
+        {editingName && <EditName />}
       </div>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">

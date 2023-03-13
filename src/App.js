@@ -6,16 +6,17 @@ import Profile from './pages/Profile';
 import './index.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import {getLogin, getProfile, setProfile} from './data';
+import { store } from './store';
 
 function App() {
 
-    let token = ""
+    /*let token = ""
     getLogin({"email": "tony@stark.com", "password": "password123"}).then(data => {
       console.log(data.body.token)
       token = data.body.token
       getProfile(token).then(data => console.log(data))
       setProfile(token, {"firstName":"Tony","lastName":"Stark"}).then(data => console.log(data))
-    })
+    })*/
     
     return(
         <Router>

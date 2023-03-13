@@ -2,8 +2,7 @@ import logo from '../assets/argentBankLogo.png'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { logIn } from '../store'
-
+import { logIn, logOut, store } from '../store'
 
 
 function LogInLink() {
@@ -17,8 +16,10 @@ function LogInLink() {
   
 
   function LogOutLink(){
+    const dispatch = useDispatch()
+
     return (
-        <Link className="main-nav-link" to="/" onClick={useDispatch(logIn())} >
+        <Link className="main-nav-link" to="/" onClick={() => dispatch({type: "logout"})} >
             <i className="fa fa-user-circle"></i>
             <p>Sign out</p>
         </Link>
@@ -29,8 +30,6 @@ function LogInLink() {
 function Header() {
 
   const logginState = useSelector(state => state.logged)
-
-  console.log(logginState)
 
     return (
         <header>
