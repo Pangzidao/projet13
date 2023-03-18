@@ -10,14 +10,6 @@ import { store } from './store';
 
 function App() {
 
-    /*let token = ""
-    getLogin({"email": "tony@stark.com", "password": "password123"}).then(data => {
-      console.log(data.body.token)
-      token = data.body.token
-      getProfile(token).then(data => console.log(data))
-      setProfile(token, {"firstName":"Tony","lastName":"Stark"}).then(data => console.log(data))
-    })*/
-    
     return(
         <Router>
           <Header />

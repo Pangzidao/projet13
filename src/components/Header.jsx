@@ -20,9 +20,22 @@ function LogInLink() {
 
     return (
         <Link className="main-nav-link" to="/" onClick={() => dispatch({type: "logout"})} >
-            <i className="fa fa-user-circle"></i>
+            <i  class="fa-solid fa-right-from-bracket"></i>        
             <p>Sign out</p>
         </Link>
+    )
+  }
+
+  function ProfileLink(){
+    const firstName = useSelector(state => state.firstName)
+    const logginState = useSelector(state => state.logged)
+
+    return (
+      <Link className="main-nav-link" to="/profile" 
+      style={logginState? {opacity:"100%"}: {opacity:"0%"}}>
+        <i className="fa fa-user-circle"></i>
+        <p>{firstName}</p>
+      </Link>
     )
   }
 
@@ -31,9 +44,12 @@ function Header() {
 
   const logginState = useSelector(state => state.logged)
 
+  
+
     return (
         <header>
       <nav className="main-nav">
+        
         <Link className="main-nav-logo" to="/">
           <img
             className="main-nav-logo-image"
@@ -42,7 +58,8 @@ function Header() {
           />
           <h1 className="sr-only">Argent Bank</h1>
         </Link>
-        <div>
+        <div className="pages-nav">
+         <ProfileLink />
           {logginState? <LogOutLink /> : <LogInLink />}
         </div>
       </nav>

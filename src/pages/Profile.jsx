@@ -4,19 +4,17 @@ import { useState } from "react"
 import EditName from "../components/EditName"
 import { useDispatch } from "react-redux";
 
-
 function Profile(){
 
   const dispatch = useDispatch()
 
-  const [editingName, setEditingName] = useState(true)
-
   const token = useSelector(state => state.token)
   const firstName = useSelector(state => state.firstName)
   const lastName = useSelector(state => state.lastName)
+  const editingName = useSelector(state => state.editingName)
+  console.log(editingName)
 
   getProfile(token).then(data => {
-    console.log(data)
     dispatch({type: "setFirstName", firstName: data.body.firstName})
     dispatch({type: "setLastName", lastName: data.body.lastName})
     }
@@ -26,8 +24,9 @@ function Profile(){
         <main className="main bg-dark">
       <div className="header">
         <h1>Welcome back<br />{firstName} {lastName}</h1>
-        <button className="edit-button" onClick={() => setEditingName(!editingName)}>Edit Name</button>
-        {editingName && <EditName />}
+        {editingName? <EditName /> 
+           : <button className="edit-button" onClick={() => dispatch({type:"editingName"})}>Edit Name</button>
+          }
       </div>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">
