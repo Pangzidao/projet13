@@ -23,9 +23,12 @@ function Profile(){
   return(
         <main className="main bg-dark">
       <div className="header">
-        <h1>Welcome back<br />{firstName} {lastName}</h1>
+        <h1>Welcome back<br /></h1>
         {editingName? <EditName /> 
-           : <button className="edit-button" onClick={() => dispatch({type:"editingName"})}>Edit Name</button>
+           :<div>
+              <p className="profile-name">{firstName} {lastName}</p>
+              <button className="edit-button" onClick={() => dispatch({type:"editingName"})}>Edit Name</button>
+           </div> 
           }
       </div>
       <h2 className="sr-only">Accounts</h2>

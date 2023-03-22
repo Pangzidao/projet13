@@ -8,7 +8,7 @@ import { logIn, logOut, store } from '../store'
 function LogInLink() {
   return(
     <Link className="main-nav-link" to="/login">
-    <i className="fa fa-user-circle"></i>
+    <i className="fa fa-user-circle profile-icon"></i>
     <p>Sign in</p>
   </Link>
   )
@@ -20,7 +20,7 @@ function LogInLink() {
 
     return (
         <Link className="main-nav-link" to="/" onClick={() => dispatch({type: "logout"})} >
-            <i  class="fa-solid fa-right-from-bracket"></i>        
+            <i  className="fa-solid fa-right-from-bracket signout-icon"></i>        
             <p>Sign out</p>
         </Link>
     )
@@ -33,7 +33,7 @@ function LogInLink() {
     return (
       <Link className="main-nav-link" to="/profile" 
       style={logginState? {opacity:"100%"}: {opacity:"0%"}}>
-        <i className="fa fa-user-circle"></i>
+        <i className="fa fa-user-circle profile-icon"></i>
         <p>{firstName}</p>
       </Link>
     )
