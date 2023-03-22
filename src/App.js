@@ -13,8 +13,6 @@ function App() {
 
   const logged = useSelector(state => state.logged)
 
-  console.log(logged)
-
     return(
         <Router>
           <Header />
